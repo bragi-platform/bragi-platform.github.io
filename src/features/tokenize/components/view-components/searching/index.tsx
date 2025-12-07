@@ -5,12 +5,12 @@ import Arrow from "./arrow.svg?react";
 import Compass from "./compass.svg?react";
 
 export function Searching(props: IconProps) {
-	const { isActive } = props;
+	const { size, isActive } = props;
 	const CN = "absolute h-8 w-8 top-0 left-0";
 
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer>
+			<TokenIcon.SVGPlacer size={size}>
 				<TokenIcon.SVGContainer>
 					<Compass className={CN} />
 				</TokenIcon.SVGContainer>

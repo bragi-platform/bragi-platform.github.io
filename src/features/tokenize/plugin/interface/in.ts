@@ -1,37 +1,33 @@
-import type { Paragraph, PhrasingContent } from "mdast";
-import type {
-	AttributeNames,
-	AttributeType,
-	RemarkNodeTypes,
-	TokenizedNodeNameTypes,
-} from "../constants";
+import type { Paragraph, PhrasingContent, Text } from "mdast";
+import type { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import type { IconAttributes, TextAttributes } from "../../constants";
+import type { TokenIcon, TokenText } from "../classes";
+import type { AttributeType, TokenizedNodeNameTypes } from "../constants";
 
+export type TokenMap = Map<Text | IconNode, TokenText[] | TokenIcon>;
+
+// mdast 노드를 확장한 커스텀 타입(자녀 교체 타입 오류 우회)
 export type ParagraphNode = Omit<Paragraph, "children"> & {
 	children: (PhrasingContent | RemarkNode)[];
 };
 
-export type RemarkNode = RawTextNode | IconNode | TextNode;
+type RemarkNode = Text | IconNode | TextNode;
 
-export type RawTextNode = {
-	type: typeof RemarkNodeTypes.TEXT;
-	value: string;
-	attributes: TokenizedNodeAttribute[];
-};
-
-export type TextNode = {
-	type: typeof RemarkNodeTypes.MDX_JSX_TEXT_ELEMENT;
+// classes에서 반환할 mdast 노드
+export type TextNode = MdxJsxFlowElement & {
 	name: typeof TokenizedNodeNameTypes.TOKENIZED_TEXT;
-	attributes: TokenizedNodeAttribute[];
+	attributes: TokenizedNodeAttribute<typeof TextAttributes>[];
 };
 
-export type IconNode = {
-	type: typeof RemarkNodeTypes.MDX_JSX_TEXT_ELEMENT;
+export type IconNode = MdxJsxFlowElement & {
 	name: typeof TokenizedNodeNameTypes.TOKENIZED_ICON;
-	attributes: TokenizedNodeAttribute[];
+	attributes: TokenizedNodeAttribute<typeof IconAttributes>[];
 };
 
-export type TokenizedNodeAttribute = {
+type TokenizedNodeAttribute<
+	T extends typeof IconAttributes | typeof TextAttributes,
+> = {
 	type: typeof AttributeType.MDX_JSX_ATTRIBUTE;
-	name: (typeof AttributeNames)[keyof typeof AttributeNames];
-	value?: string | number;
+	name: T[keyof T];
+	value: string;
 };

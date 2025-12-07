@@ -6,10 +6,10 @@ import Tamagochi from "./tamagochi.svg?react";
 const iconCN = "w-full h-full";
 
 export function Growth(props: IconProps) {
-	const { isActive } = props;
+	const { size, isActive } = props;
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer>
+			<TokenIcon.SVGPlacer size={size}>
 				<TokenIcon.SVGContainer variants={tamagochiVariants}>
 					<Tamagochi className={iconCN} />
 				</TokenIcon.SVGContainer>

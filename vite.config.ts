@@ -7,7 +7,7 @@ import { defineConfig, loadEnv } from "vite";
 import { VitePluginRadar } from "vite-plugin-radar";
 import svgr from "vite-plugin-svgr";
 
-import { remarkTokenProcess } from "./src/features/tokenize/plugin";
+import { remarkTokenize } from "./src/features/tokenize/plugin";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
 			{
 				enforce: "pre",
 				...mdx({
-					remarkPlugins: [remarkTokenProcess],
+					remarkPlugins: [remarkTokenize],
 					providerImportSource: "@mdx-js/react",
 				}),
 			},

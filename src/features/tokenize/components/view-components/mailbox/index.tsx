@@ -7,22 +7,19 @@ import Spider from "./spider.svg?react";
 const iconCN = "w-full h-full";
 
 export function Mailbox(props: IconProps) {
-	const { isActive } = props;
+	const { isActive, size } = props;
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer size="L">
-				<TokenIcon.SVGContainer size="L" variants={mailboxVariants}>
+			<TokenIcon.SVGPlacer size={size}>
+				<TokenIcon.SVGContainer variants={mailboxVariants}>
 					<PlainMailbox className={iconCN} />
 				</TokenIcon.SVGContainer>
 				{/* 거미줄*/}
-				<TokenIcon.SVGContainer size="L" variants={stringVariants}>
+				<TokenIcon.SVGContainer variants={stringVariants}>
 					<span className="absolute bg-black w-[1%] h-[20%] top-[18%] left-[31%]" />
 				</TokenIcon.SVGContainer>
-				<TokenIcon.SVGContainer
-					size="L"
-					variants={spiderContainerVariant}
-				>
-					<TokenIcon.SVGContainer size="L" variants={spiderVariants}>
+				<TokenIcon.SVGContainer variants={spiderContainerVariant}>
+					<TokenIcon.SVGContainer variants={spiderVariants}>
 						<Spider
 							className={
 								"absolute w-[42%] h-[42%] left-[11%] top-[14%]"

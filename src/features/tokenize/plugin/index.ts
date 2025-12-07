@@ -1,2 +1,2 @@
 // plugin
-export { remarkTokenProcess } from "./logic/main";
+export { remarkTokenize } from "./logic/main";
