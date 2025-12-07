@@ -1,2 +1,2 @@
-export type { TokenIconTypeKey } from './interface'
-export { TokenIconTypeKeys } from './constants'
+export { TokenIconTypeKeys } from "./constants";
+export type { TokenIconTypeKey } from "./interface";

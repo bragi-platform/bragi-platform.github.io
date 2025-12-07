@@ -1,7 +1,7 @@
 import { Suspense } from "react";
+import type { IconWrapperProps } from "../../../interface";
 import { TokenIconLoader } from "../loader";
 import { useIsActive } from "./hooks/useScrollProgress";
-import type { IconWrapperProps } from "../../../interface";
 
 export default function TokenIcon(props: IconWrapperProps) {
 	const { activateAt, iconType } = props;

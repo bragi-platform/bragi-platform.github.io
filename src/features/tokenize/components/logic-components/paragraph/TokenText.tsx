@@ -1,9 +1,9 @@
 import { LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
-import type { TextProps,} from "../../../interface";
-import type { TokenVariants } from '../../interface'
-import { useIsActive } from "./hooks/useScrollProgress";
+import type { TextProps } from "../../../interface";
+import type { TokenVariants } from "../../interface";
 import { TokenVariantEnum } from "../../interface";
+import { useIsActive } from "./hooks/useScrollProgress";
 
 const loadFeatures = await import("motion/react").then(
 	(res) => res.domAnimation,
