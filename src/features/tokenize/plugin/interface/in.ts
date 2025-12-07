@@ -1,9 +1,14 @@
+import type { Paragraph, PhrasingContent } from "mdast";
 import type {
 	AttributeNames,
 	AttributeType,
 	RemarkNodeTypes,
 	TokenizedNodeNameTypes,
 } from "../constants";
+
+export type ParagraphNode = Omit<Paragraph, "children"> & {
+	children: (PhrasingContent | RemarkNode)[];
+};
 
 export type RemarkNode = RawTextNode | IconNode | TextNode;
 

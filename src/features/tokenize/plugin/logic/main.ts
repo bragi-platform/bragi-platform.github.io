@@ -1,4 +1,4 @@
-import type { Paragraph, Root } from "mdast";
+import type { Root } from "mdast";
 import type { Transformer } from "unified";
 import {
 	AttributeType,
@@ -6,7 +6,12 @@ import {
 	TokenizedNodeNameTypes,
 	Weight,
 } from "../constants";
-import type { RawTextNode, RemarkNode, TextNode } from "../interface";
+import type {
+	ParagraphNode,
+	RawTextNode,
+	RemarkNode,
+	TextNode,
+} from "../interface";
 import { isIconNode, isRawTextNode } from "../util";
 import { getWeightFromNode } from "./calculation";
 import {
@@ -33,7 +38,7 @@ export function remarkTokenProcess(): Transformer<Root, Root> {
 }
 
 function injectAttributes(
-	paragraphs: Paragraph[],
+	paragraphs: ParagraphNode[],
 	initialActivatedWeight: number,
 	totalWeight: number,
 ) {
@@ -66,7 +71,7 @@ function injectAttributes(
 			}
 		}
 		currentWeight += Weight.PARAGRAPH;
-		paragraph.children = newParagraph as any;
+		paragraph.children = newParagraph;
 	}
 	return;
 }
