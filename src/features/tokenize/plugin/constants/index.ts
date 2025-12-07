@@ -1,2 +1,2 @@
-export * from './remark'
-export * from './opts'
+export * from "./opts";
+export * from "./remark";

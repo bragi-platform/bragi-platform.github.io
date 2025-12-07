@@ -6,7 +6,7 @@ import { COLOR_ENUM, type MetaballAtom } from "./interface";
 import { Metaball } from "./Metaball";
 import { shuffle } from "./shuffle";
 
-export function Dynamic(props: IconProps	) {
+export function Dynamic(props: IconProps) {
 	const { isActive } = props;
 
 	const [gridState, setGridState] = useState(initialGridState);

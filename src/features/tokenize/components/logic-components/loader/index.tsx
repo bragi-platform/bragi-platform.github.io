@@ -1,6 +1,6 @@
 import { type ComponentType, type LazyExoticComponent, lazy } from "react";
-import type { TokenIconTypeKey, IconProps } from "../../../interface";
-import { TokenIconTypeKeys } from "../../../constants"
+import { TokenIconTypeKeys } from "../../../constants";
+import type { IconProps, TokenIconTypeKey } from "../../../interface";
 
 export const TokenIconLoader: Record<
 	TokenIconTypeKey,
