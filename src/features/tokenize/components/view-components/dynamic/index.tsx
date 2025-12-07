@@ -7,7 +7,7 @@ import { Metaball } from "./Metaball";
 import { shuffle } from "./shuffle";
 
 export function Dynamic(props: IconProps) {
-	const { isActive } = props;
+	const { size, isActive } = props;
 
 	const [gridState, setGridState] = useState(initialGridState);
 
@@ -20,7 +20,7 @@ export function Dynamic(props: IconProps) {
 
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer>
+			<TokenIcon.SVGPlacer size={size}>
 				<GooeyFilter />
 				<span className="absolute left-[10%] top-[20%]">
 					{Object.values(COLOR_ENUM).map((color) => (

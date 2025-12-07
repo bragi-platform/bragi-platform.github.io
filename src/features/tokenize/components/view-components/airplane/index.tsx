@@ -7,10 +7,10 @@ import { airplaneVariants } from "./variant";
 const iconCN = "w-full h-full ";
 
 export function Airplane(props: IconProps) {
-	const { isActive } = props;
+	const { size, isActive } = props;
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer>
+			<TokenIcon.SVGPlacer size={size}>
 				<TokenIcon.SVGContainer variants={airplaneVariants}>
 					<AirplaneSVG
 						className={cn([

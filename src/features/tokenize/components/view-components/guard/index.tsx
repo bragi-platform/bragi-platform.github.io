@@ -7,10 +7,10 @@ import Portcullis from "./portcullis.svg?react";
 const iconCN = "w-full h-full";
 
 export function Guard(props: IconProps) {
-	const { isActive } = props;
+	const { size, isActive } = props;
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer>
+			<TokenIcon.SVGPlacer size={size}>
 				<TokenIcon.SVGContainer>
 					<GateBody className={iconCN} />
 				</TokenIcon.SVGContainer>

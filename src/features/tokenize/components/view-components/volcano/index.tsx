@@ -8,10 +8,10 @@ import Mountain from "./mountain.svg?react";
 const iconCN = "w-full h-full";
 
 export function Volcano(props: IconProps) {
-	const { isActive } = props;
+	const { size, isActive } = props;
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer>
+			<TokenIcon.SVGPlacer size={size}>
 				<TokenIcon.SVGContainer>
 					<Mountain className={iconCN} />
 				</TokenIcon.SVGContainer>

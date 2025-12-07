@@ -7,10 +7,10 @@ import Ladder from "./ladder.svg?react";
 const iconCN = "w-full h-full";
 
 export function Shortcut(props: IconProps) {
-	const { isActive } = props;
+	const { size, isActive } = props;
 	return (
 		<TokenIcon.OuterContainer isActive={isActive}>
-			<TokenIcon.SVGPlacer>
+			<TokenIcon.SVGPlacer size={size}>
 				<TokenIcon.SVGContainer variants={holeVariants}>
 					<Hole className={iconCN} />
 				</TokenIcon.SVGContainer>

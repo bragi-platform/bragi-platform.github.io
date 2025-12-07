@@ -11,7 +11,7 @@ export default function TokenIcon(props: IconWrapperProps) {
 
 	return (
 		<Suspense>
-			<Component isActive={isActive} />
+			<Component isActive={isActive} {...props} />
 		</Suspense>
 	);
 }

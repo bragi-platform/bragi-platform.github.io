@@ -5,9 +5,11 @@ import { cn } from "@/lib/utils";
 import type { TokenVariants } from "../../interface";
 import { TokenVariantEnum } from "../../interface";
 
-type SVGParentProps = PropsWithChildren & {
-	size?: "S" | "L";
+type PropsWithSize = {
+	size?: "S" | "M" | "L";
 };
+
+type SVGParentProps = PropsWithChildren & PropsWithSize;
 
 function SVGParent(props: SVGParentProps) {
 	const { children, size = "S" } = props;
@@ -25,21 +27,13 @@ function SVGParent(props: SVGParentProps) {
 }
 
 type SVGContainerProps = PropsWithChildren & {
-	size?: "S" | "L";
 	variants?: TokenVariants;
 };
 
 function SVGContainer(props: SVGContainerProps) {
-	const { variants, size = "S", children } = props;
+	const { variants, children } = props;
 	return (
-		<m.span
-			className={cn([
-				"absolute",
-				size === "S" && "w-8 h-8",
-				size === "L" && "w-12 h-12",
-			])}
-			variants={variants}
-		>
+		<m.span className={cn(["absolute w-full h-full"])} variants={variants}>
 			{children}
 		</m.span>
 	);
