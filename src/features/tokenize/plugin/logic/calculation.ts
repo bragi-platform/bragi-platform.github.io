@@ -1,42 +1,33 @@
-import { AttributeNames, Height, Weight } from "../constants";
-import { isIconNode, isRawTextNode, isTextNode } from "../util";
+import type { Root } from "mdast";
+import { visit } from "unist-util-visit";
+import { RemarkNodeTypes } from "../constants";
+import type { TokenMap } from "../interface";
+import { isRawTextNode } from "../util";
 
-export function getWeightFromNode(node: unknown): number {
-	if (isRawTextNode(node)) {
-		return node.value.length;
-	}
+export function calculateInitialActivatedWeight(tree: Root): number {
+	let initialActivatedWeight = 0;
 
-	if (isTextNode(node)) {
-		const v = node.attributes?.find(
-			(attr) => attr.name === AttributeNames.CONTENT,
-		)?.value;
-		return v ? v.toString().length : 1;
-	}
-
-	if (isIconNode(node)) {
-		const weightAttr = node.attributes?.find(
-			(attr) => attr.name === AttributeNames.WEIGHT,
+	visit(tree, RemarkNodeTypes.PARAGRAPH, (paragraphNode) => {
+		if (initialActivatedWeight !== 0) return;
+		const sentences = paragraphNode.children.filter((child: unknown) =>
+			isRawTextNode(child),
 		);
-		if (weightAttr?.value) {
-			if (typeof weightAttr.value === "string") {
-				return weightAttr.value === "L"
-					? Weight.LARGE_TOKEN
-					: Weight.DEFAULT_TOKEN;
-			}
-		}
-		return Weight.DEFAULT_TOKEN;
-	}
+		if (sentences.length === 0) return;
+		const firstSentence = sentences[0].value.split(".")[0];
 
-	return 0;
+		initialActivatedWeight = firstSentence.length + 1;
+	});
+	return initialActivatedWeight;
 }
 
-export function getActivateAt(
-	progress: number,
-	initialActivatedWeight: number,
-	totalWeight: number,
-	heightEndsAt: number = Height.ENDS_AT,
-): number {
-	if (totalWeight <= 0) return 0;
-	if (initialActivatedWeight >= progress) return 0;
-	return (progress / totalWeight) * heightEndsAt;
+export function calculateTotalWeight(tokenMap: TokenMap): number {
+	let totalWeight = 0;
+	for (const token of tokenMap.values()) {
+		if (Array.isArray(token)) {
+			totalWeight += token.reduce((acc, cur) => acc + cur.getWeight(), 0);
+		} else {
+			totalWeight += token.getWeight();
+		}
+	}
+	return totalWeight;
 }
