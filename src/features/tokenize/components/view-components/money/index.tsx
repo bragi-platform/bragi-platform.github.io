@@ -1,9 +1,9 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import LeftWing from "./leftWing.svg?react";
-import Body from "./money.svg?react";
-import RightWing from "./rightWing.svg?react";
+import LeftWing from "./leftWing.svg";
+import Body from "./money.svg";
+import RightWing from "./rightWing.svg";
 
 const iconCN = "w-full h-full";
 

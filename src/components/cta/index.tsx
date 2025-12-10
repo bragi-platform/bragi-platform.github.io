@@ -1,7 +1,10 @@
+"use client";
+
 import { useAnalytics } from "use-analytics";
 import { Button } from "@/components/ui/button";
-import CalDotCom from "./calcom.svg?react";
-import { BOOKING_LINK } from "./constants";
+import CalDotCom from "./calcom.svg";
+
+const BOOKING_LINK = process.env.NEXT_PUBLIC_BOOKING_LINK || "";
 
 export default function CallToActionSection() {
 	const analytics = useAnalytics();
@@ -17,7 +20,7 @@ export default function CallToActionSection() {
 	return (
 		<Button
 			variant="secondary"
-			className="font-gothic text-xl h-18 bg-green-300 hover:bg-green-400 dark:bg-green-700 dark:hover:bg-green-600"
+			className="font-plex-sans text-xl h-18 bg-green-300 hover:bg-green-400 dark:bg-green-700 dark:hover:bg-green-600"
 		>
 			<a
 				className="flex w-full h-full items-center justify-center gap-2"

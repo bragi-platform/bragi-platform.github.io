@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { IconProps } from "../../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import AirplaneSVG from "./airplane.svg?react";
+import AirplaneSVG from "./airplane.svg";
 import { airplaneVariants } from "./variant";
 
 const iconCN = "w-full h-full ";

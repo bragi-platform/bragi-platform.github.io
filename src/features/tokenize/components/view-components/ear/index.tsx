@@ -1,7 +1,7 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import Listening from "./listening.svg?react";
+import Listening from "./listening.svg";
 
 const iconCN = "w-full h-full";
 

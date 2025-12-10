@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	createContext,
 	type PropsWithChildren,
@@ -6,19 +8,16 @@ import {
 	useState,
 } from "react";
 import { LOCAL_STORAGE_KEY, MEDIA_QUERY, THEME } from "./constants";
-import type { Theme } from "./interface";
+export type Theme = (typeof THEME)[keyof typeof THEME];
 
 export const ThemeContext = createContext({
 	theme: THEME.system as Theme,
 	setTheme: (_theme: Theme) => {},
 });
 
-export function ThemeContextProvider(props: PropsWithChildren) {
+export default function ThemeContextProvider(props: PropsWithChildren) {
 	const { children } = props;
-	const [theme, setThemeState] = useState<Theme>(
-		() =>
-			(localStorage.getItem(LOCAL_STORAGE_KEY) as Theme) || THEME.system,
-	);
+	const [theme, setThemeState] = useState<Theme>(THEME.system);
 
 	useEffect(() => {
 		const root = window.document.documentElement;

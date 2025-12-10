@@ -1,3 +1,5 @@
+"use client";
+
 import { LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import type { PropsWithChildren } from "react";
@@ -43,9 +45,8 @@ type WrapperProps = PropsWithChildren & {
 	isActive: boolean;
 };
 
-const loadFeatures = await import("motion/react").then(
-	(res) => res.domAnimation,
-);
+const loadFeatures = () =>
+	import("motion/react").then((res) => res.domAnimation);
 
 function OuterContainer(props: WrapperProps) {
 	const { isActive } = props;

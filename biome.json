@@ -6,7 +6,8 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignoreUnknown": true
+		"ignoreUnknown": true,
+		"includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
 	},
 	"assist": {
 		"actions": {
@@ -27,7 +28,6 @@
 			"tailwindDirectives": true
 		}
 	},
-
 	"linter": {
 		"enabled": true,
 		"rules": {
@@ -39,7 +39,8 @@
 			"suspicious": {
 				"noDebugger": "error",
 				"noCatchAssign": "error",
-				"noConsole": "warn"
+				"noConsole": "warn",
+				"noUnknownAtRules": "off"
 			},
 			"complexity": {
 				"noForEach": "warn",
@@ -52,6 +53,10 @@
 				"noAutofocus": "warn",
 				"noRedundantAlt": "warn"
 			}
+		},
+		"domains": {
+			"next": "recommended",
+			"react": "recommended"
 		}
 	}
 }

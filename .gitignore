@@ -23,7 +23,20 @@ dist-ssr
 *.sln
 *.sw?
 
-# vite
-stats.html
+# 환경변수
+.env
 
-.ignore
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

@@ -1,9 +1,9 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import LeftMessage from "./leftMessage.svg?react";
-import LightBulb from "./lightBulb.svg?react";
-import RightMessage from "./rightMessage.svg?react";
+import LeftMessage from "./leftMessage.svg";
+import LightBulb from "./lightBulb.svg";
+import RightMessage from "./rightMessage.svg";
 
 const iconCN = "w-full h-full";
 

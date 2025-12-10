@@ -1,3 +1,5 @@
+"use client";
+
 import { Eclipse, Moon, Sun } from "lucide-react";
 import { useContext } from "react";
 import { Button } from "@/components/ui/button";
@@ -7,7 +9,8 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { THEME, ThemeContext } from "@/providers/Theme";
+import { ThemeContext } from "@/providers/theme";
+import { THEME } from "@/providers/theme/constants";
 
 export default function DropdownMenuCheckboxes() {
 	const { theme, setTheme } = useContext(ThemeContext);
@@ -16,13 +19,7 @@ export default function DropdownMenuCheckboxes() {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild={true}>
 				<Button variant="outline" className="cursor-pointer">
-					{theme === THEME.dark ? (
-						<Moon />
-					) : theme === THEME.system ? (
-						<Eclipse />
-					) : (
-						<Sun />
-					)}
+					<ThemeIcon theme={theme} />
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-min min-w-0">
@@ -32,16 +29,20 @@ export default function DropdownMenuCheckboxes() {
 						checked={theme === v}
 						onCheckedChange={() => setTheme(v)}
 					>
-						{v === THEME.dark ? (
-							<Moon />
-						) : v === THEME.system ? (
-							<Eclipse />
-						) : (
-							<Sun />
-						)}
+						<ThemeIcon theme={v} />
 					</DropdownMenuCheckboxItem>
 				))}
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);
+}
+
+function ThemeIcon({ theme }: { theme: (typeof THEME)[keyof typeof THEME] }) {
+	if (theme === THEME.dark) {
+		return <Moon />;
+	} else if (theme === THEME.system) {
+		return <Eclipse />;
+	} else {
+		return <Sun />;
+	}
 }

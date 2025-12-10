@@ -1,8 +1,8 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import Arrow from "./arrow.svg?react";
-import Compass from "./compass.svg?react";
+import Arrow from "./arrow.svg";
+import Compass from "./compass.svg";
 
 export function Searching(props: IconProps) {
 	const { size, isActive } = props;

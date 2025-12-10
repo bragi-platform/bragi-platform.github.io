@@ -1,8 +1,8 @@
 import type { IconProps } from "../../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import Bear from "./bear.svg?react";
-import Sheep from "./sheep.svg?react";
-import Skull from "./skull.svg?react";
+import Bear from "./bear.svg";
+import Sheep from "./sheep.svg";
+import Skull from "./skull.svg";
 import TeamMember from "./TeamMembers";
 
 export function Profiles(props: IconProps) {

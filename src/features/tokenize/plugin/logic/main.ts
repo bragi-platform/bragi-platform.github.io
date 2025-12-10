@@ -1,5 +1,5 @@
 import type { Root } from "mdast";
-import type { Transformer } from "unified";
+import type { Pluggable } from "unified";
 import { RemarkNodeTypes } from "../constants";
 import type { ParagraphNode, TokenMap } from "../interface";
 import { isIconNode, isRawTextNode } from "../util";
@@ -10,7 +10,7 @@ import {
 import { createTokens } from "./initialize";
 import { injectAttributes } from "./inject";
 
-export function remarkTokenize(): Transformer<Root, Root> {
+export const remarkTokenize: Pluggable = () => {
 	return (tree: Root) => {
 		// 초기화
 		const paragraphs = tree.children.filter(

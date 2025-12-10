@@ -1,3 +1,5 @@
+"use client";
+
 import { LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import type { FunctionComponent, SVGProps } from "react";
@@ -12,9 +14,8 @@ type TeamMemberProps = {
 	index: number;
 };
 
-const loadFeatures = await import("motion/react").then(
-	(res) => res.domAnimation,
-);
+const loadFeatures = () =>
+	import("motion/react").then((res) => res.domAnimation);
 
 export default function TeamMember(props: TeamMemberProps) {
 	const { name, position, Icon, index } = props;

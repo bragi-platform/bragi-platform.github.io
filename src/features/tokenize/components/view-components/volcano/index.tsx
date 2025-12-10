@@ -1,9 +1,9 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import Fume from "./fume.svg?react";
-import Magma from "./magma.svg?react";
-import Mountain from "./mountain.svg?react";
+import Fume from "./fume.svg";
+import Magma from "./magma.svg";
+import Mountain from "./mountain.svg";
 
 const iconCN = "w-full h-full";
 
