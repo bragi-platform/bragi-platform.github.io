@@ -10,7 +10,7 @@ import {
 import { createTokens } from "./initialize";
 import { injectAttributes } from "./inject";
 
-export function remarkTokenize(): Pluggable {
+export const remarkTokenize: Pluggable = () => {
 	return (tree: Root) => {
 		// 초기화
 		const paragraphs = tree.children.filter(
