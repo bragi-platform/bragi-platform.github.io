@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense } from "react";
 import type { IconWrapperProps } from "../../../interface";
 import { TokenIconLoader } from "../loader";
