@@ -1,13 +1,11 @@
-import type { PropsWithChildren } from "react";
-import { Button } from "@/components/ui/button";
 import { Copy } from "@/components/ui/copy";
-import { cn } from "@/lib/utils";
-import IBM from "./ibm.svg?react";
-import Reboot from "./reboot.svg?react";
+import { Link } from "@/components/ui/link";
+import IBM from "./ibm.svg";
+import Reboot from "./reboot.svg";
 
 export default function Footer() {
 	return (
-		<footer className="flex w-full flex-col gap-1 h-auto font-gothic text-gray-400">
+		<footer className="flex w-full flex-col gap-1 h-auto font-plex-sans text-gray-400">
 			<span>
 				궁금한 게 있나요?{" "}
 				<Copy
@@ -33,22 +31,5 @@ export default function Footer() {
 				을 사용하고 있어요.
 			</span>
 		</footer>
-	);
-}
-
-function Link({ href, children }: PropsWithChildren & { href: string }) {
-	return (
-		<Button
-			variant={"link"}
-			className={cn([
-				"inline-flex gap-2 text-gray-400 p-0",
-				"text-gray-400 hover:text-gray-700 stroke-gray-400 hover:stroke-gray-700 fill-gray-400 hover:fill-gray-700",
-				"dark:hover:text-gray-200 dark:hover:stroke-gray-200 dark:hover:fill-gray-200",
-			])}
-		>
-			<a href={href} className="flex gap-1">
-				{children}
-			</a>
-		</Button>
 	);
 }

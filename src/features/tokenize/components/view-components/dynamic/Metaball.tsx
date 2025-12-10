@@ -1,5 +1,4 @@
-const { motion } = await import("motion/react");
-
+import { motion } from "motion/react";
 import { Suspense } from "react";
 import type { COLOR_ENUM } from "./interface";
 
@@ -15,7 +14,7 @@ export function Metaball(props: MetaballProps) {
 	const { index, color } = props;
 
 	return (
-		<Suspense>
+		<Suspense fallback={null}>
 			<motion.span
 				className="absolute w-2/3 h-2/3 rounded-[40%]"
 				layout={true}

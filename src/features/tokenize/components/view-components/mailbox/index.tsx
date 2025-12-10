@@ -1,8 +1,8 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import PlainMailbox from "./mailbox.svg?react";
-import Spider from "./spider.svg?react";
+import PlainMailbox from "./mailbox.svg";
+import Spider from "./spider.svg";
 
 const iconCN = "w-full h-full";
 

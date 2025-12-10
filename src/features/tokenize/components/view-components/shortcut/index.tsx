@@ -1,8 +1,8 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import Hole from "./hole.svg?react";
-import Ladder from "./ladder.svg?react";
+import Hole from "./hole.svg";
+import Ladder from "./ladder.svg";
 
 const iconCN = "w-full h-full";
 

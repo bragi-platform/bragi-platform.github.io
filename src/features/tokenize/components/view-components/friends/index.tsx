@@ -1,8 +1,8 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import Boots from "./boots.svg?react";
-import Runner from "./runner.svg?react";
+import Boots from "./boots.svg";
+import Runner from "./runner.svg";
 
 const iconCN = "w-full h-full";
 

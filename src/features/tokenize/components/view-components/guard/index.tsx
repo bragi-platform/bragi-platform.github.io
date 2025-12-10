@@ -1,8 +1,8 @@
 import type { IconProps } from "../../../interface";
 import type { TokenVariants } from "../../interface";
 import TokenIcon from "../../logic-components/icon-wrapper";
-import GateBody from "./gate.svg?react";
-import Portcullis from "./portcullis.svg?react";
+import GateBody from "./gate.svg";
+import Portcullis from "./portcullis.svg";
 
 const iconCN = "w-full h-full";
 
