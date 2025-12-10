@@ -1,7 +1,11 @@
-// ResponsiveTooltip.tsx
+"use client";
 
-import type { ComponentProps, ReactNode } from "react";
-import { useMediaQuery } from "usehooks-ts";
+import {
+	type ComponentProps,
+	type ReactNode,
+	useEffect,
+	useState,
+} from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import {
 	Tooltip,
@@ -18,26 +22,42 @@ type ResponsiveTooltipProps = ComponentProps<
 };
 
 export function ResponsiveTooltip(props: ResponsiveTooltipProps) {
-	const isDesktop = useMediaQuery("(min-width: 768px)");
-	const { content, trigger } = props;
+	const { trigger, content } = props;
+	const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
 
-	if (isDesktop) {
-		return (
-			<TooltipProvider>
-				<Tooltip>
-					<TooltipTrigger>{trigger}</TooltipTrigger>
-					<TooltipContent side="bottom">{content}</TooltipContent>
-				</Tooltip>
-			</TooltipProvider>
-		);
-	}
+	useEffect(() => {
+		const mediaQuery = window.matchMedia("(min-width: 768px)");
+		setIsDesktop(mediaQuery.matches);
 
-	return (
+		const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+		mediaQuery.addEventListener("change", handler);
+
+		return () => mediaQuery.removeEventListener("change", handler);
+	}, []);
+
+	const PopoverComponent = (
 		<Popover>
-			<PopoverTrigger className="cursor-pointer">
-				{trigger}
-			</PopoverTrigger>
-			<PopoverContent side="bottom">{content}</PopoverContent>
+			<PopoverTrigger>{trigger}</PopoverTrigger>
+			<PopoverContent side={"bottom"}>{content}</PopoverContent>
 		</Popover>
 	);
+
+	const TooltipComponent = (
+		<TooltipProvider>
+			<Tooltip>
+				<TooltipTrigger>{trigger}</TooltipTrigger>
+				<TooltipContent side={"bottom"}>{content}</TooltipContent>
+			</Tooltip>
+		</TooltipProvider>
+	);
+
+	if (isDesktop === null) {
+		return PopoverComponent;
+	}
+
+	if (isDesktop) {
+		return TooltipComponent;
+	}
+
+	return PopoverComponent;
 }

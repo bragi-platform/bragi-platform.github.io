@@ -1,3 +1,5 @@
+"use client";
+
 import { Check, Copy as CopyIcon } from "lucide-react";
 import * as React from "react";
 
