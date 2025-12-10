@@ -1,4 +1,4 @@
-export const THEME = {
+export const DARK_MODE_THEME = {
 	dark: "dark",
 	light: "light",
 	system: "system",

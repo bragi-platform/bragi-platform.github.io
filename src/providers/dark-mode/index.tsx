@@ -7,26 +7,26 @@ import {
 	useEffect,
 	useState,
 } from "react";
-import { LOCAL_STORAGE_KEY, MEDIA_QUERY, THEME } from "./constants";
-export type Theme = (typeof THEME)[keyof typeof THEME];
+import { DARK_MODE_THEME, LOCAL_STORAGE_KEY, MEDIA_QUERY } from "./constants";
+import type { Theme } from "./types";
 
-export const ThemeContext = createContext({
-	theme: THEME.system as Theme,
+const DarkModeContext = createContext({
+	theme: DARK_MODE_THEME.system as Theme,
 	setTheme: (_theme: Theme) => {},
 });
 
-export default function ThemeContextProvider(props: PropsWithChildren) {
+export default function DarkModeContextProvider(props: PropsWithChildren) {
 	const { children } = props;
-	const [theme, setThemeState] = useState<Theme>(THEME.system);
+	const [theme, setThemeState] = useState<Theme>(DARK_MODE_THEME.system);
 
 	useEffect(() => {
 		const root = window.document.documentElement;
-		root.classList.remove(THEME.light, THEME.dark);
+		root.classList.remove(DARK_MODE_THEME.light, DARK_MODE_THEME.dark);
 
-		if (theme === THEME.system) {
+		if (theme === DARK_MODE_THEME.system) {
 			const systemTheme = window.matchMedia(MEDIA_QUERY).matches
-				? THEME.dark
-				: THEME.light;
+				? DARK_MODE_THEME.dark
+				: DARK_MODE_THEME.light;
 
 			root.classList.add(systemTheme);
 			return;
@@ -41,13 +41,15 @@ export default function ThemeContextProvider(props: PropsWithChildren) {
 	}, []);
 
 	return (
-		<ThemeContext.Provider
+		<DarkModeContext.Provider
 			value={{
 				theme,
 				setTheme,
 			}}
 		>
 			{children}
-		</ThemeContext.Provider>
+		</DarkModeContext.Provider>
 	);
 }
+
+export { DARK_MODE_THEME, DarkModeContext };
