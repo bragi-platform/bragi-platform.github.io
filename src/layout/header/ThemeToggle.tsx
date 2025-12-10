@@ -9,11 +9,10 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ThemeContext } from "@/providers/theme";
-import { THEME } from "@/providers/theme/constants";
+import { DARK_MODE_THEME, DarkModeContext } from "@/providers/dark-mode";
 
 export default function DropdownMenuCheckboxes() {
-	const { theme, setTheme } = useContext(ThemeContext);
+	const { theme, setTheme } = useContext(DarkModeContext);
 
 	return (
 		<DropdownMenu>
@@ -23,7 +22,7 @@ export default function DropdownMenuCheckboxes() {
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-min min-w-0">
-				{Array.from(Object.values(THEME)).map((v) => (
+				{Array.from(Object.values(DARK_MODE_THEME)).map((v) => (
 					<DropdownMenuCheckboxItem
 						key={v}
 						checked={theme === v}
@@ -37,10 +36,14 @@ export default function DropdownMenuCheckboxes() {
 	);
 }
 
-function ThemeIcon({ theme }: { theme: (typeof THEME)[keyof typeof THEME] }) {
-	if (theme === THEME.dark) {
+function ThemeIcon({
+	theme,
+}: {
+	theme: (typeof DARK_MODE_THEME)[keyof typeof DARK_MODE_THEME];
+}) {
+	if (theme === DARK_MODE_THEME.dark) {
 		return <Moon />;
-	} else if (theme === THEME.system) {
+	} else if (theme === DARK_MODE_THEME.system) {
 		return <Eclipse />;
 	} else {
 		return <Sun />;
