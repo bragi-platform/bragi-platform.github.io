@@ -25,3 +25,18 @@ dist-ssr
 
 # 환경변수
 .env
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
