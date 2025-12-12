@@ -1,6 +1,7 @@
 "use client";
 
 import { sendGAEvent } from "@next/third-parties/google";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import CalDotCom from "./calcom.svg";
 
@@ -16,14 +17,14 @@ export default function CallToActionSection() {
 			variant="secondary"
 			className="font-plex-sans text-xl h-18 bg-green-300 hover:bg-green-400 dark:bg-green-700 dark:hover:bg-green-600"
 		>
-			<a
+			<Link
 				className="flex w-full h-full items-center justify-center gap-2"
 				href={BOOKING_LINK}
 				onClick={onClick}
 			>
 				<CalDotCom className="size-8" />
 				에서 인터뷰 예약하기
-			</a>
+			</Link>
 		</Button>
 	);
 }

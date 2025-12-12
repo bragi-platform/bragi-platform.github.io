@@ -1,10 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import type { PropsWithChildren } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function Link({ href, children }: PropsWithChildren & { href: string }) {
+export function FooterLink({
+	href,
+	children,
+}: PropsWithChildren & { href: string }) {
 	return (
 		<Button
 			variant={"link"}
@@ -14,9 +18,9 @@ export function Link({ href, children }: PropsWithChildren & { href: string }) {
 				"dark:hover:text-gray-200 dark:hover:stroke-gray-200 dark:hover:fill-gray-200",
 			])}
 		>
-			<a href={href} className="flex gap-1">
+			<Link href={href} className="flex gap-1">
 				{children}
-			</a>
+			</Link>
 		</Button>
 	);
 }

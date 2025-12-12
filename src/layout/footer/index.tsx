@@ -1,5 +1,5 @@
 import { Copy } from "@/components/ui/copy";
-import { Link } from "@/components/ui/link";
+import { FooterLink } from "@/components/ui/link";
 import IBM from "./ibm.svg";
 import Reboot from "./reboot.svg";
 
@@ -16,18 +16,18 @@ export default function Footer() {
 			</span>
 			<span>
 				페이지의 전체적인 디자인은{" "}
-				<Link href={"https://reboot.studio"}>
+				<FooterLink href={"https://reboot.studio"}>
 					<Reboot />
 					reboot.studio
-				</Link>
+				</FooterLink>
 				를 많이 참고했어요.
 			</span>
 			<span>
 				글꼴은{" "}
-				<Link href={"https://www.ibm.com/plex/"}>
+				<FooterLink href={"https://www.ibm.com/plex/"}>
 					<IBM />
 					IBM Plex Sans KR
-				</Link>
+				</FooterLink>
 				을 사용하고 있어요.
 			</span>
 		</footer>
