@@ -11,12 +11,11 @@
 		"format": "biome format . --write"
 	},
 	"dependencies": {
-		"@analytics/google-analytics": "^1.1.0",
+		"@next/third-parties": "^16.0.10",
 		"@radix-ui/react-dropdown-menu": "^2.1.16",
 		"@radix-ui/react-popover": "^1.1.15",
 		"@radix-ui/react-slot": "^1.2.4",
 		"@radix-ui/react-tooltip": "^1.2.8",
-		"analytics": "^0.8.19",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"lucide-react": "^0.555.0",
@@ -25,7 +24,6 @@
 		"react": "19.2.1",
 		"react-dom": "19.2.1",
 		"tailwind-merge": "^3.4.0",
-		"use-analytics": "^1.1.0",
 		"usehooks-ts": "^3.1.1"
 	},
 	"devDependencies": {
@@ -40,7 +38,6 @@
 		"@types/node": "^24.10.1",
 		"@types/react": "^19.2.5",
 		"@types/react-dom": "^19.2.3",
-		"@types/use-analytics": "^0.0.3",
 		"@types/webpack": "^5.28.5",
 		"babel-plugin-react-compiler": "^1.0.0",
 		"mdast-util-mdx-jsx": "^3.2.0",
