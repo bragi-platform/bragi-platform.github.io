@@ -32,11 +32,6 @@ jobs:
         with:
           node-version: lts/*
           cache: 'pnpm'
-      - name: Set up environment variables
-        env:
-          NEXT_PUBLIC_BOOKING_LINK: ${{ vars.NEXT_PUBLIC_BOOKING_LINK }}
-          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
-          NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
       - name: Install dependencies
         run: pnpm install
       - name: Build
