@@ -1,20 +1,14 @@
 "use client";
 
-import { useAnalytics } from "use-analytics";
+import { sendGAEvent } from "@next/third-parties/google";
 import { Button } from "@/components/ui/button";
 import CalDotCom from "./calcom.svg";
 
 const BOOKING_LINK = process.env.NEXT_PUBLIC_BOOKING_LINK || "";
 
 export default function CallToActionSection() {
-	const analytics = useAnalytics();
-
 	const onClick = () => {
-		analytics.track("reservation-button-click", {
-			category: "reservation",
-			action: "click",
-			label: "reservation-button-click",
-		});
+		sendGAEvent("event", "reservation-button-click");
 	};
 
 	return (
