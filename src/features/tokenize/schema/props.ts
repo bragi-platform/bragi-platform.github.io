@@ -18,7 +18,7 @@ export const TokenIconTypeEnum = [
 ] as const;
 
 export const IconSchema = z.object({
-	size: z.enum(["S", "M", "L"]).default('S'),
+	size: z.enum(["S", "M", "L"]).default("S"),
 	iconType: z.enum(TokenIconTypeEnum),
 });
 

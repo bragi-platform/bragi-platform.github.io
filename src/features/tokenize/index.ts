@@ -1,2 +1,2 @@
-export { TokenIconTypeKeys } from "./constants";
-export type { TokenIconTypeKey } from "./interface";
+export { remarkTokenize } from "./plugin";
+export { TokenIconTypeEnum } from "./schema";

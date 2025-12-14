@@ -15,6 +15,7 @@ type SVGParentProps = PropsWithChildren & PropsWithSize;
 
 function SVGParent(props: SVGParentProps) {
 	const { children, size = "S" } = props;
+
 	return (
 		<span
 			className={cn([
