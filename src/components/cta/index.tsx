@@ -3,9 +3,10 @@
 import { sendGAEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { env } from "@/env";
 import CalDotCom from "./calcom.svg";
 
-const BOOKING_LINK = process.env.NEXT_PUBLIC_BOOKING_LINK || "";
+const BOOKING_LINK = env.NEXT_PUBLIC_BOOKING_LINK;
 
 export default function CallToActionSection() {
 	const onClick = () => {
