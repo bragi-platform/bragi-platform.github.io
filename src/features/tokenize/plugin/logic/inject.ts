@@ -1,8 +1,9 @@
 import type { TokenIcon } from "../classes";
 import type { TokenText } from "../classes/text";
 import { Height, Weight } from "../constants";
-import type { ParagraphNode, TokenMap } from "../interface";
-import { isIconNode, isRawTextNode } from "../util";
+import type { ParagraphNode } from "../interface";
+import { isIconNode, isTextNode } from "../util";
+import type { TokenMap } from "./interface";
 
 export function injectAttributes(
 	paragraphs: ParagraphNode[],
@@ -34,7 +35,7 @@ function injectAttributeInNode(
 	totalWeight: number,
 ): number {
 	let localWeight = currentWeight;
-	if (!isRawTextNode(node) && !isIconNode(node)) return localWeight;
+	if (!isTextNode(node) && !isIconNode(node)) return localWeight;
 
 	const tokens = tokenMap.get(node);
 	if (Array.isArray(tokens)) {

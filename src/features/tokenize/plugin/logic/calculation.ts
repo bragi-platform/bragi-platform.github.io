@@ -1,16 +1,15 @@
 import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
-import { RemarkNodeTypes } from "../constants";
-import type { TokenMap } from "../interface";
-import { isRawTextNode } from "../util";
+import { isTextNode } from "../util";
+import type { TokenMap } from "./interface";
 
 export function calculateInitialActivatedWeight(tree: Root): number {
 	let initialActivatedWeight = 0;
 
-	visit(tree, RemarkNodeTypes.PARAGRAPH, (paragraphNode) => {
+	visit(tree, "paragraph", (paragraphNode) => {
 		if (initialActivatedWeight !== 0) return;
 		const sentences = paragraphNode.children.filter((child: unknown) =>
-			isRawTextNode(child),
+			isTextNode(child),
 		);
 		if (sentences.length === 0) return;
 		const firstSentence = sentences[0].value.split(".")[0];

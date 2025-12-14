@@ -1,77 +1,77 @@
 import { type ComponentType, type LazyExoticComponent, lazy } from "react";
-import { TokenIconTypeKeys } from "../../../constants";
-import type { IconProps, TokenIconTypeKey } from "../../../interface";
+import type { IconProps } from "../../../interface";
+import type { TokenIconTypeEnum } from "../../../schema";
 
 export const TokenIconLoader: Record<
-	TokenIconTypeKey,
+	(typeof TokenIconTypeEnum)[number],
 	LazyExoticComponent<ComponentType<IconProps>>
 > = {
-	[TokenIconTypeKeys.AIRPLANE]: lazy(() =>
+	AIRPLANE: lazy(() =>
 		import("../../view-components/airplane").then((module) => ({
 			default: module.Airplane,
 		})),
 	),
-	[TokenIconTypeKeys.DYNAMIC]: lazy(() =>
+	DYNAMIC: lazy(() =>
 		import("../../view-components/dynamic").then((module) => ({
 			default: module.Dynamic,
 		})),
 	),
-	[TokenIconTypeKeys.EAR]: lazy(() =>
+	EAR: lazy(() =>
 		import("../../view-components/ear").then((module) => ({
 			default: module.Ear,
 		})),
 	),
-	[TokenIconTypeKeys.FRIENDS]: lazy(() =>
+	FRIENDS: lazy(() =>
 		import("../../view-components/friends").then((module) => ({
 			default: module.Friends,
 		})),
 	),
-	[TokenIconTypeKeys.GROWTH]: lazy(() =>
+	GROWTH: lazy(() =>
 		import("../../view-components/growth").then((module) => ({
 			default: module.Growth,
 		})),
 	),
-	[TokenIconTypeKeys.GUARD]: lazy(() =>
+	GUARD: lazy(() =>
 		import("../../view-components/guard").then((module) => ({
 			default: module.Guard,
 		})),
 	),
-	[TokenIconTypeKeys.LEARNING]: lazy(() =>
+	LEARNING: lazy(() =>
 		import("../../view-components/learning").then((module) => ({
 			default: module.Learning,
 		})),
 	),
-	[TokenIconTypeKeys.MAILBOX]: lazy(() =>
+	MAILBOX: lazy(() =>
 		import("../../view-components/mailbox").then((module) => ({
 			default: module.Mailbox,
 		})),
 	),
-	[TokenIconTypeKeys.MONEY]: lazy(() =>
+	MONEY: lazy(() =>
 		import("../../view-components/money").then((module) => ({
 			default: module.Money,
 		})),
 	),
-	[TokenIconTypeKeys.OOPS]: lazy(() =>
+	OOPS: lazy(() =>
 		import("../../view-components/oops").then((module) => ({
 			default: module.Oops,
 		})),
 	),
-	[TokenIconTypeKeys.PROFILES]: lazy(() =>
+	PROFILES: lazy(() =>
 		import("../../view-components/profile").then((module) => ({
 			default: module.Profiles,
 		})),
 	),
-	[TokenIconTypeKeys.SEARCHING]: lazy(() =>
+	SEARCHING: lazy(() =>
 		import("../../view-components/searching").then((module) => ({
 			default: module.Searching,
 		})),
 	),
-	[TokenIconTypeKeys.SHORTCUT]: lazy(() =>
+	SHORTCUT: lazy(() =>
 		import("../../view-components/shortcut").then((module) => ({
 			default: module.Shortcut,
 		})),
 	),
-	[TokenIconTypeKeys.VOLCANO]: lazy(() =>
+	VOLCANO: lazy(() =>
 		import("../../view-components/volcano").then((module) => ({
 			default: module.Volcano,
 		})),
