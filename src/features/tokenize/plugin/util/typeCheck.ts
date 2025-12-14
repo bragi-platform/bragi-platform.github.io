@@ -1,29 +1,35 @@
 import type { Text } from "mdast";
-import { TokenIconTypeKeys } from "../../constants";
-import type { TokenIconTypeKey } from "../../interface";
-import { RemarkNodeTypes, TokenizedNodeNameTypes } from "../constants";
+import type { z } from "zod";
+import {
+	IconSchema,
+	TextNodeSchema,
+	TransformedIconNodeSchema,
+} from "../../schema";
 import type { IconNode } from "../interface";
 
-export function isRawTextNode(node: unknown): node is Text {
-	if (!node) return false;
-	if (typeof node !== "object") return false;
-	if (!("type" in node)) return false;
-	if (node.type !== RemarkNodeTypes.TEXT) return false;
-	return true;
+export function isTextNode(node: unknown): node is Text {
+	const textNode = TextNodeSchema.safeParse(node);
+	return textNode.success;
 }
 
 export function isIconNode(node: unknown): node is IconNode {
-	if (!node) return false;
-	if (typeof node !== "object") return false;
-	if (!("type" in node)) return false;
-	if (node.type !== RemarkNodeTypes.MDX_JSX_TEXT_ELEMENT) return false;
-
-	if (!("name" in node)) return false;
-	if (node.name !== TokenizedNodeNameTypes.TOKENIZED_ICON) return false;
-	return true;
+	const transformedNode = TransformedIconNodeSchema.safeParse(node);
+	const iconResult = IconSchema.safeParse(transformedNode.data?.attributes);
+	return iconResult.success;
 }
 
-const iconKeySet = new Set<string>(Object.values(TokenIconTypeKeys));
-export function isIconKey(key: string): key is TokenIconTypeKey {
-	return iconKeySet.has(key);
+export function getIconNodeAttr(node: unknown) {
+	const transformedNode = TransformedIconNodeSchema.safeParse(node);
+	const iconResult = IconSchema.safeParse(transformedNode.data?.attributes);
+	return iconResult.data;
+}
+
+export function validateSchema<T extends z.ZodTypeAny>(
+	arg: unknown,
+	schema: T,
+): asserts arg is z.infer<T> {
+	const result = schema.safeParse(arg);
+	if (!result.success) {
+		throw new Error(`Invalid arguments: ${result.error.message}`);
+	}
 }
