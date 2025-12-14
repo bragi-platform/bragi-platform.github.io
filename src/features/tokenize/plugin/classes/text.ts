@@ -1,15 +1,13 @@
-import { TextAttributes } from "../../constants";
-import type { InjectArgs, TextArgs } from "../../interface";
-import {
-	AttributeType,
-	RemarkNodeTypes,
-	TokenizedNodeNameTypes,
-} from "../constants";
+import z from "zod";
+import type { TextArgs } from "../../interface";
+import { InjectableSchema, TextSchema } from "../../schema";
 import type { TextNode } from "../interface";
+import { validateSchema } from "../util";
 import { TokenBase } from "./base";
 
 export class TokenText extends TokenBase<
-	TextArgs & Partial<InjectArgs>,
+	typeof TextSchema,
+	typeof InjectableSchema,
 	TextNode
 > {
 	constructor(args: TextArgs) {
@@ -17,25 +15,25 @@ export class TokenText extends TokenBase<
 		this.weight = args.content.length;
 	}
 
-	toAST() {
-		this.validate(Object.values(TextAttributes));
+	toAST(): TextNode {
+		validateSchema(this.args, z.intersection(TextSchema, InjectableSchema));
 		return {
-			type: RemarkNodeTypes.MDX_JSX_FLOW_ELEMENT,
-			name: TokenizedNodeNameTypes.TOKENIZED_TEXT,
+			type: "mdxJsxFlowElement",
+			name: "TokenText",
 			attributes: [
 				{
-					type: AttributeType.MDX_JSX_ATTRIBUTE,
-					name: TextAttributes.ID,
+					type: "mdxJsxAttribute",
+					name: "id" as const,
 					value: String(this.args.id),
 				},
 				{
-					type: AttributeType.MDX_JSX_ATTRIBUTE,
-					name: TextAttributes.ACTIVATE_AT,
+					type: "mdxJsxAttribute",
+					name: "activateAt" as const,
 					value: String(this.args.activateAt),
 				},
 				{
-					type: AttributeType.MDX_JSX_ATTRIBUTE,
-					name: TextAttributes.CONTENT,
+					type: "mdxJsxAttribute",
+					name: "content" as const,
 					value: String(this.args.content),
 				},
 			],

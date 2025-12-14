@@ -1,52 +1,46 @@
-import { IconAttributes } from "../../constants";
-import type { IconArgs, InjectArgs } from "../../interface";
-import {
-	AttributeType,
-	RemarkNodeTypes,
-	TokenizedNodeNameTypes,
-	Weight,
-} from "../constants";
+import z from "zod";
+import type { IconArgs } from "../../interface";
+import { IconSchema, InjectableSchema } from "../../schema";
+import { Weight } from "../constants";
 import type { IconNode } from "../interface";
-import { isIconKey } from "../util";
+import { validateSchema } from "../util";
 import { TokenBase } from "./base";
 
 export class TokenIcon extends TokenBase<
-	IconArgs & Partial<InjectArgs>,
+	typeof IconSchema,
+	typeof InjectableSchema,
 	IconNode
 > {
 	constructor(args: IconArgs) {
-		if (!isIconKey(args.iconType)) {
-			throw new Error(`Invalid icon type: ${args.iconType}`);
-		}
 		super(args);
 		this.weight =
 			args.size === "L" ? Weight.LARGE_TOKEN : Weight.DEFAULT_TOKEN;
 	}
 
 	toAST(): IconNode {
-		this.validate(Object.values(IconAttributes));
+		validateSchema(this.args, z.intersection(IconSchema, InjectableSchema));
 		return {
-			type: RemarkNodeTypes.MDX_JSX_FLOW_ELEMENT,
-			name: TokenizedNodeNameTypes.TOKENIZED_ICON,
+			type: "mdxJsxFlowElement",
+			name: "TokenIcon",
 			attributes: [
 				{
-					type: AttributeType.MDX_JSX_ATTRIBUTE,
-					name: IconAttributes.ID,
+					type: "mdxJsxAttribute",
+					name: "id" as const,
 					value: String(this.args.id),
 				},
 				{
-					type: AttributeType.MDX_JSX_ATTRIBUTE,
-					name: IconAttributes.ACTIVATE_AT,
+					type: "mdxJsxAttribute",
+					name: "activateAt" as const,
 					value: String(this.args.activateAt),
 				},
 				{
-					type: AttributeType.MDX_JSX_ATTRIBUTE,
-					name: IconAttributes.ICON_TYPE,
+					type: "mdxJsxAttribute",
+					name: "iconType" as const,
 					value: String(this.args.iconType),
 				},
 				{
-					type: AttributeType.MDX_JSX_ATTRIBUTE,
-					name: IconAttributes.SIZE,
+					type: "mdxJsxAttribute",
+					name: "size" as const,
 					value: String(this.args.size),
 				},
 			],

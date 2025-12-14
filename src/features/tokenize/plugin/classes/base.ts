@@ -1,20 +1,25 @@
-import type { IconArgs, InjectArgs, TextArgs } from "../../interface";
+import type { z } from "zod";
+import type { IconSchema, InjectableSchema, TextSchema } from "../../schema";
 import { Weight } from "../constants";
 import type { IconNode, TextNode } from "../interface";
 
 export abstract class TokenBase<
-	T extends (TextArgs | IconArgs) & Partial<InjectArgs>,
+	S extends typeof IconSchema | typeof TextSchema,
+	I extends typeof InjectableSchema,
 	R extends TextNode | IconNode,
 > {
-	protected args: T;
+	protected args: Partial<z.infer<S> & z.infer<I>>;
 	protected weight: number;
 
-	constructor(args: T) {
-		this.args = args;
+	constructor(args: z.infer<S>) {
+		this.args = {
+			...args,
+			...{}, // 타입 추론을 위해 빈 객체 추가
+		};
 		this.weight = Weight.DEFAULT_TOKEN;
 	}
 
-	injectAttribute(args: InjectArgs) {
+	injectAttribute(args: z.infer<I>) {
 		this.args = {
 			...this.args,
 			...args,
@@ -26,12 +31,4 @@ export abstract class TokenBase<
 	}
 
 	abstract toAST(): R;
-
-	protected validate(attrs: string[]) {
-		for (const val of attrs) {
-			if (!(val in this.args)) {
-				throw new Error(`Missing attribute: ${val}`);
-			}
-		}
-	}
 }
